@@ -1,2 +1,3 @@
 aws_credentials.rb
 illusion_src/*
+db/
