@@ -7,8 +7,6 @@ get "/new" do
 end
 
 post "/grid" do
-  raise
-
   @grid = Grid.create :name => params[:name]
   
   frames = Magick::ImageList.new(params[:files].collect{|f| f[1][:tempfile] })
