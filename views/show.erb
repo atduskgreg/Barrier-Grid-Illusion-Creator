@@ -16,12 +16,12 @@
         if (!mask) mask = document.getElementById('mask')
         mask.style.left = '' + offset + 'px'
       }
-      var setIllusion = function (name) {
-        if (!image) image = document.getElementById('image')
-        if (!mask) mask = document.getElementById('mask')
-        image.src = 'http://barrier-grid.s3.amazonaws.com/composite_<%= @grid.id %>.png'
-        mask.src = 'http://barrier-grid.s3.amazonaws.com/barrier_<%= @grid.id %>.png'
-      }
+      // var setIllusion = function (name) {
+      //         if (!image) image = document.getElementById('image')
+      //         if (!mask) mask = document.getElementById('mask')
+      //         image.src = 'http://barrier-grid.s3.amazonaws.com/composite_<%= @grid.id %>.png'
+      //         mask.src = 'http://barrier-grid.s3.amazonaws.com/barrier_<%= @grid.id %>.png'
+      //       }
     </script>
 
   </head>
@@ -30,8 +30,8 @@
     <h2><%= @grid.name %></h2>
     
     <div id="illusion">
-      <img src="pentagon-illusion.png" id="image" alt="Illusion">
-      <img src="pentagon-mask.png" id="mask" alt="Illusion mask">
+      <img src="http://barrier-grid.s3.amazonaws.com/composite_<%= @grid.id %>.png" id="image" alt="Illusion">
+      <img src="http://barrier-grid.s3.amazonaws.com/barrier_<%= @grid.id %>.png" id="mask" alt="Illusion mask">
     </div>
     <p>
       <input id="slider" type="range" min="-360" max="360" step="1" value="0"
