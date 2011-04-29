@@ -1,0 +1,6 @@
+sinatra
+dm-core
+dm-migrations
+dm-postgres-adapter
+do_postgres
+rmagick
