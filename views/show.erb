@@ -19,8 +19,8 @@
       var setIllusion = function (name) {
         if (!image) image = document.getElementById('image')
         if (!mask) mask = document.getElementById('mask')
-        image.src = name + 'http://barrier-grid.s3.amazonaws.com/composite_<%= @grid.id %>.png'
-        mask.src = name + 'http://barrier-grid.s3.amazonaws.com/barrier_<%= @grid.id %>.png'
+        image.src = 'http://barrier-grid.s3.amazonaws.com/composite_<%= @grid.id %>.png'
+        mask.src = 'http://barrier-grid.s3.amazonaws.com/barrier_<%= @grid.id %>.png'
       }
     </script>
 
