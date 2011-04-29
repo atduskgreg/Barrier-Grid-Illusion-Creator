@@ -1,2 +1,3 @@
 illusion_src/*
 db/
+aws_credentials.rb
