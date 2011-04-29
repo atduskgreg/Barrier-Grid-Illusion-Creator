@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Nifty optical illusion</title>
+    <style type="text/css">
+      body { font-family: 'Helvetica Neue', Helvetica, sans-serif;
+        width: 720px; margin: auto; text-align: center; }
+      h1, h2, pre { text-align: left; }
+      #illusion { position: relative; width: 720px; height: 480px; }
+      #mask { position: absolute; top: 0px; left: 0px; }
+      #slider { width: 720px; }
+    </style>
+    <script type="text/javascript">
+      var mask, image
+      var setMaskOffset = function (offset) {
+        if (!mask) mask = document.getElementById('mask')
+        mask.style.left = '' + offset + 'px'
+      }
+      var setIllusion = function (name) {
+        if (!image) image = document.getElementById('image')
+        if (!mask) mask = document.getElementById('mask')
+        image.src = name + 'http://barrier-grid.s3.amazonaws.com/composite_<%= @grid.id %>'
+        mask.src = name + 'http://barrier-grid.s3.amazonaws.com/barrier_<%= @grid.id %>'
+      }
+    </script>
+
+  </head>
+  <body>
+    <h1>The Barrier Grid Animation Effect</h1>
+    <h2><%= @grid.name %></h2>
+    
+    <div id="illusion">
+      <img src="pentagon-illusion.png" id="image" alt="Illusion">
+      <img src="pentagon-mask.png" id="mask" alt="Illusion mask">
+    </div>
+    <p>
+      <input id="slider" type="range" min="-360" max="360" step="1" value="0"
+             onchange="setMaskOffset(this.value)" >
+    </p>
+    <p>
+      <input type="button" value="Pentagon" onclick="setIllusion('pentagon')">
+      <input type="button" value="Face" onclick="setIllusion('face')">
+      <input type="button" value="Numbers" onclick="setIllusion('clock')">
+    </p>
+    </body>
+    </html>

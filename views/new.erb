@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <title></title>
+      <script src="http://code.jquery.com/jquery-1.4.2.min.js" ></script>
+      <script>      
+      $(window).load(function () {
+        $("#addImage").click(function(){
+          var nextName = $("#imageInputs input").length
+          $("#imageInputs").append('<p><label>Image '+ (nextName + 1) +'</label>	<input type="file" name="files['+nextName+']"></p>')
+          return false;
+        });
+      });
+      </script>
+  </head>
+  <body>
+    <h1></h1>
+    <h2>Upload images for your own grid</h2>
+    <form action="/grid" method="POST" enctype="multipart/form-data">
+      <p>
+        <label>Name</label> <input type="text" name="name" />
+      </p>
+      <div id="imageInputs">
+      <p>
+        <label>Image 1</label>	<input type="file" name="files[0]">
+      </p>
+      <p>
+        <label>Image 2</label>	<input type="file" name="files[1]">
+      </p>
+        <p>
+          <label>Image 3</label>	<input type="file" name="files[2]">
+        </p>
+        
+        </div>
+        <p>
+          <a id="addImage" href="#">add another</a>
+        </p>
+        <p>
+          <input type="submit" />
+        </p>
+    </form>
+  </body>
+</html>
