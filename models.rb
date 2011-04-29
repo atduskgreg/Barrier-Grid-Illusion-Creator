@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'dm-core'
+require 'RMagick'
 
 module Magick
   class Image
