@@ -20,17 +20,4 @@ class Grid
   include DataMapper::Resource
   property :id,         Serial    
   property :name,       String    
-
-  has n, :images
 end    
-
-class Image
-
-  include DataMapper::Resource
-
-  property :id,         Serial    
-  property :created_at, DateTime
-  
-  belongs_to :grid
-  
-end

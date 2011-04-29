@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'models'
 require 'aws/s3'
+require './aws_credentials.rb'
 
 get "/new" do
   erb :new
