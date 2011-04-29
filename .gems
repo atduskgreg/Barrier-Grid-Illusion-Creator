@@ -4,3 +4,4 @@ dm-migrations
 dm-postgres-adapter
 do_postgres
 rmagick
+aws-s3

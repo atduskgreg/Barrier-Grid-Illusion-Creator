@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'models'
+require 'aws/s3'
 
 get "/new" do
   erb :new
