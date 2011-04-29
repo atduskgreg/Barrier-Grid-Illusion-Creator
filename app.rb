@@ -33,7 +33,7 @@ post "/grid" do
   
   AWS::S3::S3Object.store("barrier_#{@grid.id}", gc.to_blob, "barrier-grid", :access => :public_read)
 
-  
+  erb :show
   # params[:files].each do |f|
   #   image = @grid.images.create :created_at => Time.now
   #   image.upload! f[1][:filename] 
