@@ -11,7 +11,8 @@ end
 post "/grid" do
   @grid = Grid.create :name => params[:name]
   
-  frames = Magick::ImageList.new(*params[:files].collect{|f| f[1][:tempfile].path }){|image| image.format = "PNG"}
+  frames = Magick::ImageList.new(*params[:files].collect{|f| f[1][:tempfile].path })
+  
   illusion = Magick::Image.new(frames.first.columns, frames.first.rows)
   
   (0...frames.first.columns).each do |col|
@@ -21,7 +22,7 @@ post "/grid" do
   
   AWS::S3::Base.establish_connection!(:access_key_id => ACCESS_KEY_ID, :secret_access_key => SECRET_ACCESS_KEY)
   
-  AWS::S3::S3Object.store("composite_#{@grid.id}", illusion.to_blob, "barrier-grid", :access => :public_read)
+  AWS::S3::S3Object.store("composite_#{@grid.id}.png", illusion.to_blob{|opts| opts.format = "PNG"}, "barrier-grid", :access => :public_read)
 
   viewer = Magick::Image.new(illusion.columns, illusion.rows) { self.background_color = '#0000' }
 
@@ -31,14 +32,19 @@ post "/grid" do
                  (n + 1) * frames.count - 2, viewer.rows)
   end
   gc.draw viewer
-  gc.to_blob
   
-  AWS::S3::S3Object.store("barrier_#{@grid.id}", gc.to_blob, "barrier-grid", :access => :public_read)
+  AWS::S3::S3Object.store("barrier_#{@grid.id}.png", viewer.to_blob{|opts| opts.format = "PNG"}, "barrier-grid", :access => :public_read)
 
-  erb :show
+  redirect "/grid/#{@grid.id}"
+  #erb :show
   # params[:files].each do |f|
   #   image = @grid.images.create :created_at => Time.now
   #   image.upload! f[1][:filename] 
   # end
   
+end
+
+get "/grid/:id" do
+  @grid = Grid.get params[:id]
+  erb :show
 end
