@@ -9,7 +9,7 @@ end
 post "/grid" do
   @grid = Grid.create :name => params[:name]
   
-  frames = Magick::ImageList.new(params[:files].collect{|f| f[1][:tempfile].path })
+  frames = Magick::ImageList.new(*params[:files].collect{|f| f[1][:tempfile].path })
   illusion = Magick::Image.new(frames.first.columns, frames.first.rows)
   
   (0...frames.first.columns).each do |col|
